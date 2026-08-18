@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  --background: #080809;
+  --surface: #111113;
+  --surface-secondary: #17171a;
+  --text-primary: #ffffff;
+  --text-secondary: #8e8e95;
+  --accent: #be123c;
+  --accent-secondary: #e11d48;
+  --border-subtle: #1d1d22;
+  --grid-line: #141416;
+  --glow-color: rgba(225, 29, 72, 0.08);
+  --text-gradient-start: #ffffff;
+  --text-gradient-end: #8e8e95;
+}
+html.light {
+  --background: #fafaf9;
+  --surface: #ffffff;
+  --surface-secondary: #f5f5f4;
+  --text-primary: #09090b;
+  --text-secondary: #71717a;
+  --accent: #9f1239;
+  --accent-secondary: #be123c;
+  --border-subtle: #e5e5e0;
+  --grid-line: rgba(0, 0, 0, 0.03);
+  --glow-color: rgba(159, 18, 57, 0.03);
+  --text-gradient-start: #09090b;
+  --text-gradient-end: #71717a;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-border-subtle: var(--border-subtle);
+  --color-grid-line: var(--grid-line);
+  
+  --font-sans: "Inter", "Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #080809;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e22;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2b2b32;
+  }
+  
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(108, 99, 255, 0.25);
+    color: #ffffff;
+  }
+}
+
+/* Custom interactive animation classes */
+.glow-blur {
+  background: radial-gradient(circle, var(--glow-color) 0%, rgba(0, 0, 0, 0) 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.text-reveal-gradient {
+  background: linear-gradient(135deg, var(--text-gradient-start) 30%, var(--text-gradient-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accent-gradient {
+  background: linear-gradient(135deg, #6c63ff 0%, #8b5cf6 100%);
+}
+
+.accent-text-gradient {
+  background: linear-gradient(135deg, #6c63ff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Infinite marquee utilities */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  gap: 2rem;
+  min-width: 100%;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-scroll {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Premium elevated cards with soft tech shadows */
+.card-premium {
+  background-color: var(--surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01), 0 15px 30px -15px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.light .card-premium {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01), 0 20px 40px -20px rgba(0, 0, 0, 0.03);
+}
+
+.card-premium:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+html.light .card-premium:hover {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01), 0 35px 70px -15px rgba(99, 102, 241, 0.1);
+}
