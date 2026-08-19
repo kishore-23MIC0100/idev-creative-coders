@@ -146,16 +146,13 @@ export const ThreeArchitecture: React.FC = () => {
     // Raycaster for Hover detection
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
+    let baseRotationY = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = renderer.domElement.getBoundingClientRect();
       mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-
-      // Parallax rotation matching cursor position
-      group.rotation.y = mouse.x * 0.15;
-      group.rotation.x = -mouse.y * 0.15;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -166,7 +163,14 @@ export const ThreeArchitecture: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate);
 
       // Auto rotation of the main system
-      group.rotation.y += 0.0015;
+      baseRotationY += 0.0015;
+
+      // Smoothly blend auto-rotation and mouse parallax (lerping)
+      const targetY = baseRotationY + mouse.x * 0.3;
+      const targetX = -mouse.y * 0.3;
+      
+      group.rotation.y += (targetY - group.rotation.y) * 0.05;
+      group.rotation.x += (targetX - group.rotation.x) * 0.05;
 
       // Dynamic theme updates for material colors
       const currentColors = getThemeColors();
