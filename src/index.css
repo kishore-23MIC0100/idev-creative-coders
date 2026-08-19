@@ -25,8 +25,8 @@ html.light {
   --border-subtle: #e8dfc9;
   --grid-line: rgba(74, 21, 33, 0.08);
   --glow-color: rgba(74, 21, 33, 0.02);
-  --text-gradient-start: #231215;
-  --text-gradient-end: #4e4043;
+  --text-gradient-start: #4a1521;
+  --text-gradient-end: #8b1e3f;
 }
 
 @theme {
@@ -67,6 +67,15 @@ html.light {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
+  }
+
+  html.light h1,
+  html.light h2,
+  html.light h3,
+  html.light h4,
+  html.light h5,
+  html.light h6 {
+    color: var(--accent);
   }
 
   /* Custom subtle scrollbar */
