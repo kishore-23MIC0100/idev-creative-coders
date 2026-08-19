@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links (Maroon Capsule Container) */}
-          <div className="hidden md:flex items-center gap-3 bg-[#4a1521]/80 border border-[#5d1f2e]/40 backdrop-blur-2xl px-5 py-2.5 rounded-full shadow-[0_12px_36px_rgba(74,21,33,0.2)]">
+          <div className="hidden md:flex items-center gap-3 bg-[#4a1521] border border-[#5d1f2e] px-5 py-2.5 rounded-full shadow-[0_12px_36px_rgba(74,21,33,0.2)]">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
