@@ -56,23 +56,23 @@ export const Navbar: React.FC = () => {
             <Logo />
           </Link>
 
-          {/* Desktop Navigation Links (Capsule Pill Container) */}
-          <div className="hidden md:flex items-center gap-3 bg-white/[0.04] [html.light_&]:bg-white/40 border border-white/10 [html.light_&]:border-accent/30 backdrop-blur-2xl px-5 py-2.5 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.45)] [html.light_&]:shadow-[0_12px_36px_rgba(74,21,33,0.08)]">
+          {/* Desktop Navigation Links (Maroon Capsule Container) */}
+          <div className="hidden md:flex items-center gap-3 bg-[#4a1521]/95 border border-[#5d1f2e] backdrop-blur-2xl px-5 py-2.5 rounded-full shadow-[0_12px_36px_rgba(74,21,33,0.25)]">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative text-xs uppercase tracking-widest transition-colors duration-300 hover:text-text-primary px-4 py-2 outline-none focus-visible:text-accent font-mono ${
-                    isActive ? "text-text-primary font-bold" : "text-text-secondary"
+                  className={`relative text-xs uppercase tracking-widest transition-colors duration-300 px-4 py-2 outline-none focus-visible:text-white font-mono ${
+                    isActive ? "text-[#faf7f2] font-bold" : "text-[#faf7f2]/60 hover:text-[#faf7f2]"
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
                   {isActive && (
                     <motion.span
                       layoutId="activeNavIndicator"
-                      className="absolute inset-0 bg-accent/15 [html.light_&]:bg-accent/10 rounded-full"
+                      className="absolute inset-0 bg-white/10 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
