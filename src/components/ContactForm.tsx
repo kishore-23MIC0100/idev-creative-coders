@@ -77,14 +77,11 @@ export const ContactForm: React.FC = () => {
 
     setStatus("submitting");
 
-    const service = import.meta.env.VITE_CONTACT_SERVICE || "simulation";
+    const service = import.meta.env.VITE_CONTACT_SERVICE || "formspree";
 
     try {
       if (service === "formspree") {
-        const url = import.meta.env.VITE_FORMSPREE_URL;
-        if (!url) {
-          throw new Error("Formspree URL is not configured in .env");
-        }
+        const url = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/meajppob";
         const response = await fetch(url, {
           method: "POST",
           headers: { 
@@ -136,7 +133,9 @@ export const ContactForm: React.FC = () => {
       }
 
       // Trigger WhatsApp Click-to-Chat Redirect if enabled
-      const whatsappEnabled = import.meta.env.VITE_WHATSAPP_REDIRECT === "true";
+      const whatsappEnabled = import.meta.env.VITE_WHATSAPP_REDIRECT !== undefined
+        ? import.meta.env.VITE_WHATSAPP_REDIRECT === "true"
+        : true;
       if (whatsappEnabled) {
         const whatsappNum = import.meta.env.VITE_WHATSAPP_NUMBER || "918610582676";
         const text = `Hello IDEV Creative Coders! I would like to submit a project inquiry:\n\n` +
