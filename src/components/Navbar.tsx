@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
                   key={link.name}
                   to={link.path}
                   className={`relative text-xs uppercase tracking-widest transition-colors duration-300 px-4 py-2 outline-none focus-visible:text-white font-mono ${
-                    isActive ? "text-[#faf7f2] font-bold" : "text-[#faf7f2]/80 hover:text-[#faf7f2]"
+                    isActive ? "text-[#faf7f2] font-bold" : "text-white/70 hover:text-[#faf7f2]"
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
