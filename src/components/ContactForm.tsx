@@ -81,7 +81,7 @@ export const ContactForm: React.FC = () => {
 
     try {
       if (service === "formspree") {
-        const url = import.meta.env.VITE_FORMSPREE_URL || "https://formspree.io/f/meajppob";
+        const url = import.meta.env.VITE_FORMSPREE_URL || "https://formsubmit.co/ajax/kishore.sivakumar34@gmail.com";
         const response = await fetch(url, {
           method: "POST",
           headers: { 
