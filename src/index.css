@@ -9,7 +9,7 @@
   --accent: #e52e58;
   --accent-secondary: #ffa6c9;
   --border-subtle: #2a2224;
-  --grid-line: rgba(255, 255, 255, 0.07);
+  --grid-line: rgba(255, 255, 255, 0.15);
   --glow-color: rgba(229, 46, 88, 0.06);
   --text-gradient-start: #ffffff;
   --text-gradient-end: #d2c7c9;
@@ -23,7 +23,7 @@ html.light {
   --accent: #4a1521;
   --accent-secondary: #8b1e3f;
   --border-subtle: #e8dfc9;
-  --grid-line: rgba(74, 21, 33, 0.08);
+  --grid-line: rgba(74, 21, 33, 0.14);
   --glow-color: rgba(74, 21, 33, 0.02);
   --text-gradient-start: #4a1521;
   --text-gradient-end: #8b1e3f;

@@ -78,7 +78,7 @@ export const ThreeArchitecture: React.FC = () => {
     const getThemeColors = () => {
       const isLight = document.documentElement.classList.contains("light");
       return {
-        base: isLight ? 0x4a1521 : 0xe52e58,
+        base: isLight ? 0x4a1521 : 0xff8da1, // Brighter glowing rose in dark mode for clear line contrast
         hover: isLight ? 0x8b1e3f : 0xffa6c9,
       };
     };
@@ -102,7 +102,7 @@ export const ThreeArchitecture: React.FC = () => {
     const linesMaterial = new THREE.LineBasicMaterial({
       color: initialColors.base,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.85, // Maximize visibility of thin 1px OpenGL lines
     });
 
     // Track valid node connection indices
