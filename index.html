@@ -29,6 +29,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Blocking script to prevent flash of wrong theme on refresh -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem("theme") || "system";
+        const isLight = theme === "light" || (theme === "system" && !window.matchMedia("(prefers-color-scheme: dark)").matches);
+        if (isLight) {
+          document.documentElement.classList.add("light");
+        } else {
+          document.documentElement.classList.remove("light");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
