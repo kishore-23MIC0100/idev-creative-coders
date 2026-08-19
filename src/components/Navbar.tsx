@@ -57,14 +57,14 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links (Capsule Pill Container) */}
-          <div className="hidden md:flex items-center gap-2 bg-surface/50 border border-border-subtle backdrop-blur-md px-4 py-2 rounded-full shadow-sm shadow-accent/5">
+          <div className="hidden md:flex items-center gap-3 bg-surface/60 [html.light_&]:bg-white/65 border border-white/10 [html.light_&]:border-black/5 backdrop-blur-xl px-5 py-2.5 rounded-full shadow-lg shadow-black/10">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative text-[10px] uppercase tracking-widest transition-colors duration-300 hover:text-text-primary px-4 py-1.5 outline-none focus-visible:text-accent font-mono ${
+                  className={`relative text-xs uppercase tracking-widest transition-colors duration-300 hover:text-text-primary px-4 py-2 outline-none focus-visible:text-accent font-mono ${
                     isActive ? "text-text-primary font-bold" : "text-text-secondary"
                   }`}
                 >
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
                   {isActive && (
                     <motion.span
                       layoutId="activeNavIndicator"
-                      className="absolute inset-0 bg-accent/10 [html.light_&]:bg-accent/5 rounded-full"
+                      className="absolute inset-0 bg-accent/15 [html.light_&]:bg-accent/10 rounded-full"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
