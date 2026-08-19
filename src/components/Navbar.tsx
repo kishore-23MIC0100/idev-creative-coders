@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation Links (Capsule Pill Container) */}
-          <div className="hidden md:flex items-center gap-3 bg-surface/60 [html.light_&]:bg-white/65 border border-white/10 [html.light_&]:border-black/5 backdrop-blur-xl px-5 py-2.5 rounded-full shadow-lg shadow-black/10">
+          <div className="hidden md:flex items-center gap-3 bg-white/[0.03] [html.light_&]:bg-white/30 border border-white/10 [html.light_&]:border-white/60 backdrop-blur-xl px-5 py-2.5 rounded-full shadow-lg shadow-black/5">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
