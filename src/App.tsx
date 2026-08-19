@@ -8,6 +8,7 @@ import { ServicesPage } from "./pages/ServicesPage";
 import { WorkPage } from "./pages/WorkPage";
 import { CaseStudy } from "./pages/CaseStudy";
 import { ContactPage } from "./pages/ContactPage";
+import { ProcessPage } from "./pages/ProcessPage";
 import { NotFound } from "./pages/NotFound";
 import { ScrollToHash } from "./components/ScrollToHash";
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/process" element={<ProcessPage />} />
             <Route path="/work" element={<WorkPage />} />
             <Route path="/work/:id" element={<CaseStudy />} />
             <Route path="/contact" element={<ContactPage />} />
