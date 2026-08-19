@@ -145,14 +145,21 @@ export const ThreeArchitecture: React.FC = () => {
 
     // Raycaster for Hover detection
     const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
+    const mouse = new THREE.Vector2(0, 0);
     let baseRotationY = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = renderer.domElement.getBoundingClientRect();
-      mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      if (!rect || rect.width <= 0 || rect.height <= 0) return; // Safety check to prevent NaN division
+      
+      const nextX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const nextY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      
+      if (!isNaN(nextX) && !isNaN(nextY)) {
+        mouse.x = nextX;
+        mouse.y = nextY;
+      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -165,12 +172,17 @@ export const ThreeArchitecture: React.FC = () => {
       // Auto rotation of the main system
       baseRotationY += 0.0015;
 
-      // Smoothly blend auto-rotation and mouse parallax (lerping)
-      const targetY = baseRotationY + mouse.x * 0.3;
-      const targetX = -mouse.y * 0.3;
+      // Smoothly blend auto-rotation and mouse parallax (lerping) with NaN safety fallbacks
+      const cleanMouseX = isNaN(mouse.x) ? 0 : mouse.x;
+      const cleanMouseY = isNaN(mouse.y) ? 0 : mouse.y;
       
-      group.rotation.y += (targetY - group.rotation.y) * 0.05;
-      group.rotation.x += (targetX - group.rotation.x) * 0.05;
+      const targetY = baseRotationY + cleanMouseX * 0.3;
+      const targetX = -cleanMouseY * 0.3;
+      
+      if (!isNaN(targetY) && !isNaN(targetX)) {
+        group.rotation.y += (targetY - group.rotation.y) * 0.05;
+        group.rotation.x += (targetX - group.rotation.x) * 0.05;
+      }
 
       // Dynamic theme updates for material colors
       const currentColors = getThemeColors();
@@ -223,6 +235,7 @@ export const ThreeArchitecture: React.FC = () => {
       if (!containerRef.current) return;
       const w = containerRef.current.clientWidth;
       const h = containerRef.current.clientHeight;
+      if (w <= 0 || h <= 0) return; // Prevent division by zero / NaN
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
