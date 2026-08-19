@@ -58,7 +58,7 @@ export const TechnologyConstellation: React.FC = () => {
         <div className="max-w-xl text-left mb-16">
           <ScrollReveal direction="down">
             <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-              08 // TECHNOLOGY STEERAGE
+              06 // TECHNOLOGY STEERAGE
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-4 text-reveal-gradient">
               Technology Constellation.

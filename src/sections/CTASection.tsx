@@ -23,8 +23,8 @@ export const CTASection: React.FC = () => {
         {/* Headline */}
         <ScrollReveal direction="up" delay={0.2}>
           <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-reveal-gradient mb-6 leading-none">
-            LET'S BUILD <br />
-            SOMETHING <span className="accent-text-gradient">USEFUL</span>.
+            LET'S DEFINE <br />
+            WHAT'S <span className="accent-text-gradient">NEXT</span>.
           </h2>
         </ScrollReveal>
 

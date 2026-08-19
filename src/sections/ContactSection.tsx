@@ -13,7 +13,7 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col gap-8 text-left">
             <ScrollReveal direction="down">
               <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-                08 // INQUIRY
+                09 // INQUIRY
               </span>
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-reveal-gradient leading-[1.1] mb-6 font-sans">
                 LET'S CREATE <br />

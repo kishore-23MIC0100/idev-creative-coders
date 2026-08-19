@@ -10,6 +10,14 @@ interface NodeData {
   description: string;
 }
 
+interface DataPacket {
+  mesh: THREE.Mesh;
+  startNodeIndex: number;
+  endNodeIndex: number;
+  progress: number;
+  speed: number;
+}
+
 export const ThreeArchitecture: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -66,9 +74,20 @@ export const ThreeArchitecture: React.FC = () => {
     const group = new THREE.Group();
     scene.add(group);
 
+    // Determine dynamic colors based on theme
+    const getThemeColors = () => {
+      const isLight = document.documentElement.classList.contains("light");
+      return {
+        base: isLight ? 0x4a1521 : 0xe52e58,
+        hover: isLight ? 0x8b1e3f : 0xffa6c9,
+      };
+    };
+
+    const initialColors = getThemeColors();
+
     // Node Meshes
     const sphereGeometry = new THREE.SphereGeometry(0.12, 16, 16);
-    const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x6c63ff });
+    const sphereMaterial = new THREE.MeshBasicMaterial({ color: initialColors.base });
 
     const meshes: THREE.Mesh[] = [];
     nodes.forEach((node) => {
@@ -81,21 +100,47 @@ export const ThreeArchitecture: React.FC = () => {
 
     // Connecting Lines
     const linesMaterial = new THREE.LineBasicMaterial({
-      color: 0x6c63ff,
+      color: initialColors.base,
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.45,
     });
 
+    // Track valid node connection indices
+    const connections: [number, number][] = [];
     for (let i = 0; i < meshes.length; i++) {
       for (let j = i + 1; j < meshes.length; j++) {
         const dist = meshes[i].position.distanceTo(meshes[j].position);
         if (dist < 3.2) {
+          connections.push([i, j]);
           const points = [meshes[i].position, meshes[j].position];
           const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
           const line = new THREE.Line(lineGeometry, linesMaterial);
           group.add(line);
         }
       }
+    }
+
+    // High-Tech Dynamic Data Packets (Simulated Network Traffic)
+    const packets: DataPacket[] = [];
+    const packetGeometry = new THREE.SphereGeometry(0.04, 8, 8);
+    const packetMaterial = new THREE.MeshBasicMaterial({ color: initialColors.hover });
+
+    // Spawn 12 active traffic packets flowing along the grid lines
+    for (let k = 0; k < 12; k++) {
+      if (connections.length === 0) break;
+      const conn = connections[Math.floor(Math.random() * connections.length)];
+      const startIdx = Math.random() > 0.5 ? conn[0] : conn[1];
+      const endIdx = startIdx === conn[0] ? conn[1] : conn[0];
+
+      const pMesh = new THREE.Mesh(packetGeometry, packetMaterial.clone());
+      group.add(pMesh);
+      packets.push({
+        mesh: pMesh,
+        startNodeIndex: startIdx,
+        endNodeIndex: endIdx,
+        progress: Math.random(), // Distribute progress along lines on load
+        speed: 0.003 + Math.random() * 0.004,
+      });
     }
 
     // Raycaster for Hover detection
@@ -108,7 +153,7 @@ export const ThreeArchitecture: React.FC = () => {
       mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-      // Parallax rotation
+      // Parallax rotation matching cursor position
       group.rotation.y = mouse.x * 0.15;
       group.rotation.x = -mouse.y * 0.15;
     };
@@ -120,22 +165,47 @@ export const ThreeArchitecture: React.FC = () => {
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
-      // Auto rotation
+      // Auto rotation of the main system
       group.rotation.y += 0.0015;
 
-      // Raycasting
+      // Dynamic theme updates for material colors
+      const currentColors = getThemeColors();
+      linesMaterial.color.setHex(currentColors.base);
+
+      // Update and animate simulated data packets
+      packets.forEach((p) => {
+        p.progress += p.speed;
+        
+        // Reset and randomize start/end targets when packet finishes its line
+        if (p.progress >= 1) {
+          p.progress = 0;
+          const conn = connections[Math.floor(Math.random() * connections.length)];
+          p.startNodeIndex = Math.random() > 0.5 ? conn[0] : conn[1];
+          p.endNodeIndex = p.startNodeIndex === conn[0] ? conn[1] : conn[0];
+          p.speed = 0.003 + Math.random() * 0.004;
+        }
+
+        const startPos = meshes[p.startNodeIndex].position;
+        const endPos = meshes[p.endNodeIndex].position;
+        
+        // Linearly interpolate positions of flowing particles
+        p.mesh.position.lerpVectors(startPos, endPos, p.progress);
+        (p.mesh.material as THREE.MeshBasicMaterial).color.setHex(currentColors.hover);
+      });
+
+      // Raycasting hover check
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(meshes);
 
       if (intersects.length > 0) {
         const hit = intersects[0].object as THREE.Mesh;
         const mat = hit.material as THREE.MeshBasicMaterial;
-        mat.color.setHex(0x8b5cf6);
+        mat.color.setHex(currentColors.hover);
         setHoveredNode(hit.userData.name + ": " + hit.userData.description);
       } else {
         meshes.forEach((mesh) => {
           const mat = mesh.material as THREE.MeshBasicMaterial;
-          mat.color.setHex(0x6c63ff);
+          mat.color.setHex(currentColors.base);
         });
         setHoveredNode(null);
       }
@@ -160,6 +230,14 @@ export const ThreeArchitecture: React.FC = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
+      
+      // Clean up packet resources
+      packets.forEach((p) => {
+        group.remove(p.mesh);
+        p.mesh.geometry.dispose();
+        (p.mesh.material as THREE.Material).dispose();
+      });
+
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }

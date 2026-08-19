@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { Logo } from "./Logo";
 
 export const Footer: React.FC = () => {
   const currentYear = 2026; // Static copyright year as requested
@@ -24,13 +25,8 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand Info */}
           <div className="md:col-span-2 flex flex-col gap-4">
-            <Link to="/" className="flex flex-col group select-none max-w-fit text-left">
-              <span className="text-2xl font-bold tracking-[0.15em] text-text-primary">
-                IDEV
-              </span>
-              <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-text-secondary group-hover:text-accent transition-colors duration-300">
-                Creative Coders
-              </span>
+            <Link to="/" className="flex items-center group max-w-fit">
+              <Logo />
             </Link>
             <p className="text-text-secondary text-sm max-w-sm mt-2 leading-relaxed text-left">
               IDEV Creative Coders combines design, development, and emerging technology to create websites, applications, and digital products that are built to perform.

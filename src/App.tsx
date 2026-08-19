@@ -9,10 +9,12 @@ import { WorkPage } from "./pages/WorkPage";
 import { CaseStudy } from "./pages/CaseStudy";
 import { ContactPage } from "./pages/ContactPage";
 import { NotFound } from "./pages/NotFound";
+import { ScrollToHash } from "./components/ScrollToHash";
 
 function App() {
   return (
     <Router>
+      <ScrollToHash />
       <div className="relative min-h-screen bg-background text-text-primary overflow-x-hidden flex flex-col justify-between selection:bg-accent/30 selection:text-white">
         {/* Custom Interactive Desktop Cursor */}
         <CustomCursor />

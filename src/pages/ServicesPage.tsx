@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { Services } from "../sections/Services";
 import { ProcessTimeline } from "../sections/ProcessTimeline";
+import { SecuritySection } from "../sections/SecuritySection";
+import { CloudDevOps } from "../sections/CloudDevOps";
+import { TechnologyConstellation } from "../sections/TechnologyConstellation";
 import { CTASection } from "../sections/CTASection";
 
 export const ServicesPage: React.FC = () => {
@@ -30,6 +33,9 @@ export const ServicesPage: React.FC = () => {
 
       <Services />
       <ProcessTimeline />
+      <SecuritySection />
+      <CloudDevOps />
+      <TechnologyConstellation />
       <CTASection />
     </div>
   );

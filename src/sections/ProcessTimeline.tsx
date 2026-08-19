@@ -43,7 +43,7 @@ export const ProcessTimeline: React.FC = () => {
         <div className="max-w-2xl mb-16 text-left">
           <ScrollReveal direction="down">
             <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-              05 // HOW WE BUILD
+              03 // HOW WE BUILD
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold mb-4 tracking-tight text-reveal-gradient">
               Our Process.

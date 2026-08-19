@@ -38,7 +38,7 @@ export const WhyIDEV: React.FC = () => {
         <div className="max-w-2xl mb-16">
           <ScrollReveal direction="down">
             <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-              09 // WHY IDEV CREATIVE CODERS
+              08 // WHY IDEV CREATIVE CODERS
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold mb-4 tracking-tight text-reveal-gradient">
               WHY IDEV CREATIVE CODERS.

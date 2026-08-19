@@ -42,7 +42,7 @@ export const SecuritySection: React.FC = () => {
           <div className="lg:col-span-6">
             <ScrollReveal direction="down">
               <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-                06 // CYBERSECURITY
+                04 // CYBERSECURITY
               </span>
               <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-reveal-gradient leading-[1.1] mb-6">
                 SECURITY IS PART OF <br className="hidden sm:block" />
@@ -79,7 +79,7 @@ export const SecuritySection: React.FC = () => {
                   onMouseLeave={() => setActiveNode(null)}
                   className={`relative z-10 w-full lg:w-28 py-4 px-3 rounded-xl border flex flex-col items-center justify-center transition-all duration-300 bg-background/80 backdrop-blur cursor-pointer ${
                     activeNode === node.name
-                      ? "border-accent shadow-[0_8px_30px_rgb(108,99,255,0.08)] -translate-y-1"
+                      ? "border-accent shadow-lg shadow-accent/10 [html.light_&]:shadow-md [html.light_&]:shadow-accent/15 -translate-y-1"
                       : "border-border-subtle hover:border-text-primary/30"
                   }`}
                 >

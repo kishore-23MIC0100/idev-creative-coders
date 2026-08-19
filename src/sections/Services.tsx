@@ -28,7 +28,7 @@ export const Services: React.FC = () => {
         <div className="max-w-3xl mb-16 text-left">
           <ScrollReveal direction="down">
             <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-              04 // WHAT WE BUILD
+              02 // WHAT WE BUILD
             </span>
             <h2 className="text-3xl sm:text-5xl font-bold mb-6 tracking-tight text-reveal-gradient">
               WHAT WE BUILD.

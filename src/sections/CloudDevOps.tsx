@@ -43,7 +43,7 @@ export const CloudDevOps: React.FC = () => {
           <div className="lg:col-span-6">
             <ScrollReveal direction="down">
               <span className="text-[10px] font-mono tracking-[0.25em] text-text-secondary uppercase block mb-4">
-                07 // CLOUD & DEVOPS
+                05 // CLOUD & DEVOPS
               </span>
               <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-reveal-gradient leading-[1.1] mb-6">
                 ENGINEERED FOR <br />

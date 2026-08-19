@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Button } from "./Button";
 import { ThemeSelector } from "./ThemeSelector";
+import { Logo } from "./Logo";
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,13 +52,8 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo / Wordmark */}
-          <Link to="/" className="flex flex-col group select-none">
-            <span className="text-xl font-bold tracking-[0.15em] text-text-primary">
-              IDEV
-            </span>
-            <span className="text-[9px] font-mono tracking-[0.25em] uppercase text-text-secondary group-hover:text-accent transition-colors duration-300">
-              Creative Coders
-            </span>
+          <Link to="/" className="flex items-center group">
+            <Logo />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -68,7 +64,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`relative text-xs uppercase tracking-widest transition-colors duration-300 hover:text-text-primary ${
+                  className={`relative text-xs uppercase tracking-widest transition-colors duration-300 hover:text-text-primary outline-none focus-visible:text-accent ${
                     isActive ? "text-text-primary font-medium" : "text-text-secondary"
                   }`}
                 >
