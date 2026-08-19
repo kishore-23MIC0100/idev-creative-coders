@@ -5,28 +5,28 @@
   --surface: #171314;
   --surface-secondary: #211c1d;
   --text-primary: #fcfafa;
-  --text-secondary: #a6989b;
+  --text-secondary: #d2c7c9;
   --accent: #e52e58;
   --accent-secondary: #ffa6c9;
   --border-subtle: #2a2224;
   --grid-line: rgba(255, 255, 255, 0.07);
   --glow-color: rgba(229, 46, 88, 0.06);
   --text-gradient-start: #ffffff;
-  --text-gradient-end: #a6989b;
+  --text-gradient-end: #d2c7c9;
 }
 html.light {
   --background: #faf7f2;
   --surface: #ffffff;
   --surface-secondary: #f4efe6;
   --text-primary: #231215;
-  --text-secondary: #6b5e61;
+  --text-secondary: #4e4043;
   --accent: #4a1521;
   --accent-secondary: #8b1e3f;
   --border-subtle: #e8dfc9;
   --grid-line: rgba(74, 21, 33, 0.08);
   --glow-color: rgba(74, 21, 33, 0.02);
   --text-gradient-start: #231215;
-  --text-gradient-end: #6b5e61;
+  --text-gradient-end: #4e4043;
 }
 
 @theme {
