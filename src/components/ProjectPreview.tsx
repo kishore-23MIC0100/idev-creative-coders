@@ -106,7 +106,7 @@ export const ProjectPreview: React.FC<ProjectPreviewProps> = ({ id }) => {
           <div className="relative w-full h-full flex flex-col justify-between border border-indigo-500/20 [html.light_&]:border-indigo-200/60 rounded-xl p-6 bg-surface-secondary/40 backdrop-blur-sm">
             <div className="flex justify-between items-start">
               <span className="text-[10px] font-mono tracking-widest text-indigo-400 [html.light_&]:text-indigo-700">BILLING APPLICATION</span>
-              <span className="text-[10px] font-mono text-indigo-500 bg-indigo-500/10 [html.light_&]:text-indigo-700 [html.light_&]:bg-indigo-100 px-2 py-0.5 rounded">LIVE DEMO</span>
+              <span className="text-[10px] font-mono text-indigo-500 bg-indigo-500/10 [html.light_&]:text-indigo-700 [html.light_&]:bg-indigo-100 px-2 py-0.5 rounded">PRODUCTION LIVE</span>
             </div>
             {/* Abstract Payment Card representation */}
             <div className="w-56 h-28 border border-indigo-500/30 [html.light_&]:border-indigo-200/60 rounded-xl p-4 self-center bg-gradient-to-br from-indigo-900/20 to-slate-900/40 [html.light_&]:from-indigo-50/80 [html.light_&]:to-slate-100/80 backdrop-blur flex flex-col justify-between text-left">
